@@ -5,6 +5,12 @@ def setup(level):
         number_count = (level // 2) * 2 + 4
         number_count = min(number_count, 16)
 
+def shuffle_gride():
+    rows =7
+    columns = 13
+
+    grid = [[0 for c in range(columns)]for r in range(rows)]
+
 def display_start_screen():
     pygame.draw.circle(screen, WHITE, start_button.center, 70, 5)
 pygame.init()
@@ -15,7 +21,7 @@ def check_button(pos):
     if start_button.collidepoint(pos):
         start = True
 
-screen_width = 1280
+screen_width = 1300
 screen_height = 700
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
