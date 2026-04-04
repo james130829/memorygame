@@ -1,15 +1,36 @@
 import pygame
+from random import *
 
 def setup(level):
-    if level % 2 == 0:
-        number_count = (level // 2) * 2 + 4
-        number_count = min(number_count, 16)
+    number_count = (level // 2) * 2 + 4
+    number_count = min(number_count, 16)
 
-def shuffle_gride():
+    shuffle_gride(number_count)
+
+def shuffle_gride(number_count):
     rows =7
     columns = 13
 
     grid = [[0 for c in range(columns)]for r in range(rows)]
+
+    number = 1
+
+    while number <= number_count:
+        row_idx = randrange(0,rows)
+        column_idx = randrange(0,columns)
+        if grid[row_idx][column_idx] == 0:
+            grid[row_idx][column_idx] = number
+            number +=1
+
+            center_x = column_idx * 100 + 50
+            center_y = row_idx + 100 +50
+
+            button = pygame.Rect(0,0,90,90)
+            button.center = (center_x, center_y)
+
+            number_buttons.append(button)
+
+    print(grid)
 
 def display_start_screen():
     pygame.draw.circle(screen, WHITE, start_button.center, 70, 5)
@@ -25,6 +46,8 @@ screen_width = 1300
 screen_height = 700
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+
+number_buttons = []
 
 screen = pygame.display.set_mode((screen_width,screen_height))
 
