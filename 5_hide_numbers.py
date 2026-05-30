@@ -38,15 +38,26 @@ def display_start_screen():
 def display_game_screen():
     screen.fill(BLACK)
     for idx, rect in enumerate(number_buttons, start=1):
-        # pygame.draw.rect(screen,GRAY,rect)
-        
-        cell_text = game_font.render(str(idx), True, WHITE)
-        text_rect = cell_text.get_rect(center = rect.center)
-        screen.blit(cell_text, text_rect)
+        if hidden:
+            pygame.draw.rect(screen,GRAY,rect)
+        else:
+            cell_text = game_font.render(str(idx), True, WHITE)
+            text_rect = cell_text.get_rect(center = rect.center)
+            screen.blit(cell_text, text_rect)
 def check_button(pos):
     global start
-    if start_button.collidepoint(pos):
+    if start:
+        check_number_buttons(pos)
+    elif start_button.collidepoint(pos):
         start = True
+
+def check_number_buttons(pos):
+    for button in number_buttons:
+        if button.collidepoint(pos):
+            if button == number_buttons[0]:
+                print("Correct")
+            else:
+                print("Wrong")
 
 pygame.init()
 screen_width = 1300
@@ -66,6 +77,8 @@ start_button.center = (140, screen_height - 140)
 
 start = False
 
+hidden = False
+
 setup(1)
 
 running = True
@@ -78,7 +91,6 @@ while running:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
             click_pos = pygame.mouse.get_pos()
-            print(click_pos)
 
     screen.fill(BLACK)
 
