@@ -35,8 +35,17 @@ def shuffle_gride(number_count):
 def display_start_screen():
     pygame.draw.circle(screen, WHITE, start_button.center, 70, 5)
 
+    msg = game_font.render(f"{curr_level}", True, WHITE)
+    msg_rect = msg.get_rect(center=start_button.center)
+    screen.blit(msg, msg_rect)
+
 def display_game_screen():
     screen.fill(BLACK)
+    global hidden
+    if not hidden:
+        elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000
+        if elapsed_time > display_time:
+            hidden = True
     for idx, rect in enumerate(number_buttons, start=1):
         if hidden:
             pygame.draw.rect(screen,GRAY,rect)
@@ -45,14 +54,15 @@ def display_game_screen():
             text_rect = cell_text.get_rect(center = rect.center)
             screen.blit(cell_text, text_rect)
 def check_button(pos):
-    global start
+    global start,start_ticks
     if start:
         check_number_buttons(pos)
     elif start_button.collidepoint(pos):
         start = True
+        start_ticks = pygame.time.get_ticks()
 
 def check_number_buttons(pos):
-    global hidden
+    global hidden,start,curr_level
     
     for button in number_buttons:
         if button.collidepoint(pos):
@@ -65,17 +75,40 @@ def check_number_buttons(pos):
                     hidden = True
             else:
                 print("Wrong")
+                game_over()
+            break
+
+    if len(number_buttons) == 0:
+        start = False
+        hidden = False
+        curr_level += 1
+        setup(curr_level)
+
+def game_over():
+    global running
+    running = False
+
+    msg = game_font.render("Game Over", True, WHITE)
+    msg_rect = msg.get_rect(center=(screen_width/2, screen_height/2))
+
+    screen.fill(BLACK)
+    screen.blit(msg, msg_rect)
 
 pygame.init()
 screen_width = 1300
 screen_height = 700
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (50,50,50)
 
+display_time = 5
+start_ticks = None
+
 game_font = pygame.font.Font(None, 120)
 
 number_buttons = []
+curr_level = 1
 
 screen = pygame.display.set_mode((screen_width,screen_height))
 
@@ -86,7 +119,7 @@ start = False
 
 hidden = False
 
-setup(1)
+setup(curr_level)
 
 running = True
 

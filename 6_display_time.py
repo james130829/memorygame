@@ -37,6 +37,11 @@ def display_start_screen():
 
 def display_game_screen():
     screen.fill(BLACK)
+    global hidden
+    if not hidden:
+        elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000
+        if elapsed_time > display_time:
+            hidden = True
     for idx, rect in enumerate(number_buttons, start=1):
         if hidden:
             pygame.draw.rect(screen,GRAY,rect)
@@ -45,11 +50,12 @@ def display_game_screen():
             text_rect = cell_text.get_rect(center = rect.center)
             screen.blit(cell_text, text_rect)
 def check_button(pos):
-    global start
+    global start,start_ticks
     if start:
         check_number_buttons(pos)
     elif start_button.collidepoint(pos):
         start = True
+        start_ticks = pygame.time.get_ticks()
 
 def check_number_buttons(pos):
     global hidden
@@ -69,9 +75,13 @@ def check_number_buttons(pos):
 pygame.init()
 screen_width = 1300
 screen_height = 700
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (50,50,50)
+
+display_time = 5
+start_ticks = None
 
 game_font = pygame.font.Font(None, 120)
 
