@@ -40,7 +40,7 @@ python memory_game.py
 ## 게임 방법
 
 1. 시작 버튼을 클릭한다.<img width="1575" height="855" alt="Image" src="https://github.com/user-attachments/assets/7db81eb1-1c9c-42f5-9e94-b3e5d252072c" />
-2. 화면에 표시된 숫자의 위치를 기억한다.
+2. 화면에 표시된 숫자의 위치를 기억한다.<img width="1560" height="877" alt="Image" src="https://github.com/user-attachments/assets/1d9b8f99-6460-420a-846b-035d2356673d" />
 3. 숫자가 사라지면 1부터 순서대로 클릭한다.
 4. 모든 숫자를 맞추면 다음 레벨로 진행된다.
 5. 잘못된 숫자를 클릭하면 게임이 종료된다.
