@@ -43,7 +43,7 @@ python memory_game.py
 2. 화면에 표시된 숫자의 위치를 기억한다.<img width="1560" height="877" alt="Image" src="https://github.com/user-attachments/assets/1d9b8f99-6460-420a-846b-035d2356673d" />
 3. 숫자가 사라지면 1부터 순서대로 클릭한다.<img width="1587" height="720" alt="Image" src="https://github.com/user-attachments/assets/9c213dc2-2de3-4ee3-abc7-28db88091652" />
 4. 모든 숫자를 맞추면 다음 레벨로 진행된다.
-5. 잘못된 숫자를 클릭하면 게임이 종료된다.
+5. 잘못된 숫자를 클릭하면 게임이 종료된다.<img width="1540" height="857" alt="Image" src="https://github.com/user-attachments/assets/650011cd-43a4-435a-8562-0b1f7ee33443" />
 
 ## 배운 점
 
